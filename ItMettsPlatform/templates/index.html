@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT мир</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1f1d1d;
+            color: #ffffff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #ff5722;
+        }
+        .header button {
+            margin-left: 10px;
+            background-color: #ff5722;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .header button:hover {
+            background-color: #e64a19;
+        }
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2em;
+        }
+        .event-hub {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .event {
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .event:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        .event h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #ff5722;
+        }
+        .event p {
+            margin: 5px 0;
+        }
+        .event img {
+            width: 100%;
+            border-radius: 10px;
+            height: 180px; /* Фиксированная высота для изображений */
+            object-fit: cover; /* Обрезка изображения для соответствия размеру */
+        }
+        .participate-btn {
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .participate-btn:hover {
+            background-color: #e64a19;
+        }
+        .add-event {
+            background-color: #ff5722;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+            width: 250px;
+            font-size: 1.2em;
+        }
+        .add-event:hover {
+            background-color: #e64a19;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: #ffffff;
+            font-size: 1em;
+        }
+        .form-container input :focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: #ff5722;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .form-container button:hover {
+            background-color: #e64a19;
+        }
+        .message {
+            text-align: center;
+            margin: 20px 0;
+            color: #ff5722;
+        }
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .navigation a {
+            color: #ff5722;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px; 
+        }
+        .modal-content {
+            background-color: #1e1e1e;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            width: 80%; 
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .card {
+            background-color: #2a2a2a; 
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            padding: 20px;
+            color: #fff;
+            position: relative; 
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05); 
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 180px; 
+            object-fit: cover; 
+        }
+        .card .label {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7); 
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            top: 10px;
+            left: 10px;
+            font-size: 12px;
+        }
+        .card h2 {
+            color: #ff5722; 
+            font-size: 20px; 
+            margin: 15px 0;
+        }
+        .card p {
+            margin: 5px 0;
+            font-size: 14px; 
+        }
+        .card .button {
+            display: block;
+            width: calc(100% - 40px);
+            background-color: #ff5722; 
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px auto 0;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .card .button:hover {
+            background-color: #e64a19; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo/logo.png') }}" alt="" class="logoImage" height="40px" width="100px" />
+        <div>
+            <button id="loginBtn">Вход</button>
+            <button id="registerBtn">Регистрация</button>
+        </div>
+    </div>
+    <h2>Список мероприятий</h2>
+    <button id="addEventBtn" class="add-event">Добавить мероприятие</button>
+    
+    <div class="event-hub">
+        {% for event in events %}
+        <div class="event" data-id="{{ event.id }}">
+            <h3>{{ event.name }}</h3>
+            <p>Город: {{ event.city }}</p>
+            <p>Адрес: {{ event.address }}</p>
+            <p>Дата и время: {{ event.datetime }}</p>
+            <p>Контакты: {{ event.contacts }}</p>
+            <p>Описание: {{ event.description }}</p>
+           
+ <img src="{{ url_for('static', filename=event.image_path)}}" alt="Изображение мероприятия" />
+            <form action="/participate/{{ event.id }}" method="POST">
+                <button type="submit" class="participate-btn">Участвовать</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>  
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="message">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeLogin">&times;</span>
+            <h2>Вход</h2>
+            <form action="/login" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+            <p>Нет аккаунта? <a href="#" id="toRegister" style="color: #ff5722;">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeRegister">&times;</span>
+            <h2>Регистрация</h2>
+            <form action="/register" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+            <p>Уже есть аккаунт? <a href="#" id="toLogin" style="color: #ff5722;">Войти</a></p>
+        </div>
+    </div>
+
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeAddEvent">&times;</span>
+            <h2>Добавить мероприятие</h2>
+            <form action="/add_event" method="POST">
+                <input type="text" name="name" placeholder="Название мероприятия" required>
+                <input type="text" name="city" placeholder="Город" required>
+                <input type="text" name="address" placeholder="Адрес" required>
+                <input type="text" name="datetime" placeholder="Дата и время" required>
+                <input type="text" name="contacts" placeholder="Контакты" required>
+                <textarea name="description" placeholder="Описание мероприятия" required></textarea>
+                <button type="submit">Добавить мероприятие</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var loginModal = document.getElementById("loginModal");
+        var registerModal = document.getElementById("registerModal");
+        var addEventModal = document.getElementById("addEventModal");
+
+        var loginBtn = document.getElementById("loginBtn");
+        var registerBtn = document.getElementById("registerBtn");
+        var addEventBtn = document.getElementById("addEventBtn");
+
+        var closeLogin = document.getElementById("closeLogin");
+        var closeRegister = document.getElementById("closeRegister");
+        var closeAddEvent = document.getElementById("closeAddEvent");
+
+        loginBtn.onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        registerBtn.onclick = function() {
+            registerModal.style.display = "block";
+        }
+
+        addEventBtn.onclick = function() {
+            addEventModal.style.display = "block";
+        }
+
+        closeLogin.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        closeRegister.onclick = function() {
+            registerModal.style.display = "none";
+        }
+
+        closeAddEvent.onclick = function() {
+            addEventModal.style.display = " none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == registerModal) {
+                registerModal.style.display = "none";
+            }
+            if (event.target == addEventModal) {
+                addEventModal.style.display = "none";
+            }
+        }
+
+        document.getElementById("toRegister").onclick = function() {
+            loginModal.style.display = "none";
+            registerModal.style.display = "block";
+        }
+
+        document.getElementById("toLogin").onclick = function() {
+            registerModal.style.display = "none";
+            loginModal.style.display = "block";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+    // Массив с именами изображений
+    const images = [
+        'image1.jpg',
+        'image2.jpg',
+        'image3.jpg',
+        'image4.jpg',
+        'image5.jpg',
+        'image6.jpg'
+    ];
+
+    // Функция для получения случайного изображения
+    function getRandomImage() {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return `static/${images[randomIndex]}`; // Путь к изображению
+    }
+
+    // Применение случайного изображения к каждой карточке
+    document.querySelectorAll('.event').forEach(event => {
+        const imgElement = event.querySelector('img');
+        imgElement.src = getRandomImage(); // Установка случайного изображения
+    });
+});
+    </script>
+</body>
+</html>

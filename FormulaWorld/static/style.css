@@ -1,0 +1,197 @@
+*{
+  scroll-behavior: smooth;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1200px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.maincontent {
+  flex: 1;
+}
+.header {
+  background-color: #fff5f5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 5px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.logo .kartinka {
+  max-width: 100px;
+}
+.kartinka2 {
+  width: 50%;
+  border-radius: 15px;
+}
+.nav {
+  display: flex;
+  gap: 20px;
+}
+.nav a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.button {
+  display: block;
+  background-color: #6dbcfc;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 10px 0px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.button:hover {
+  background-color: #63abe6;
+  transform: scale(1.1, 1.1);
+}
+.card {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+.card h3 {
+  margin-top: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.title {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (max-width: 545px){
+  .title{
+    justify-content: center;
+  }
+}
+.intro {
+  justify-content: left;
+  display: flex;
+  margin-bottom: 100px;
+  font-size: 20px;
+}
+@media (max-width: 990px){
+  .intro .kartinka2{
+    height: 100%;
+  }
+}
+@media (max-width: 510px){
+  .intro{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 460px){
+  .header{
+    flex-direction: column;
+  }
+}
+.intro h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: left;
+}
+.intro p {
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: center;
+}
+.aboutus {
+  margin-top: 50px;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+}
+.aboutus h2 {
+  padding-left: 10px;
+  padding-top: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 33px;
+  text-align: left;
+}
+.aboutus p {
+  padding-left: 10px;
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 15px;
+}
+
+.contacts {
+  background-color: #f0f0f0;
+  border-radius: 16px;
+}
+.contacts h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 33px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 15px;
+}
+.contacts p {
+  padding-left: 10px;
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.contacts .map {
+  padding: 10px 15px;
+}
+.map iframe{
+  width: 100%;
+}
+.footer {
+  margin-top: 50px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+.footer p {
+  margin: 5px 0;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.formuls {
+  display: flex;
+  gap: 30px;
+}
+.tema {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.magicformul {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.form {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  width: calc(50% - 40px);
+  box-sizing: border-box;
+  min-width: 260px;
+}
+.form h2 {
+  font-size: 18px;
+  margin-top: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form p {
+  margin: 10px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
