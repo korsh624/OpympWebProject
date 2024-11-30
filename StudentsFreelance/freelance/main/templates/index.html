@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="search-section" id="search">
+  <div class="container">
+    <h1 class="text-center mb-5" style="color: black">
+      <strong>Найдите фриланс-заказы быстро</strong>
+    </h1>
+    <form class="d-flex justify-content-center" action="{% url 'main:search' %}" method="GET">
+      <input
+        type="text"
+        class="form-control"
+        name="text"
+        placeholder="Поиск заказов..."
+      />
+      <button type="submit" class="btn btn-primary">Поиск</button>
+    </form>
+  </div>
+</div>
+<div class="advantages" id="advantages">
+  <div class="container">
+    <h1 class="text-center mb-5">Преимущества</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <img
+          src="https://storage.googleapis.com/a1aa/image/Y0T5Sqb5OBL5CJbfJB4ZMqOf0qHR5Ao8fphXbf8Cpf8TRmreE.jpg"
+          alt="Иконка преимущества 1"
+          width="50"
+          height="50"
+        />
+        <h3>Доступность работы</h3>
+        <p>Откройте для себя возможности трудоустройства в вашем районе с помощью нашей фриланс-биржи, специально разработанной для студентов Владимирской области. Наша платформа поможет вам найти интересные проекты, соответствующие вашим навыкам и графику.</p>
+      </div>
+      <div class="col-md-4">
+        <img
+          src="https://storage.googleapis.com/a1aa/image/ufOpVDF9Ku0KSqxBt92gVMFeFPfWIQqEMgv5SY2YXOtSk5qnA.jpg"
+          alt="Иконка преимущества 2"
+          width="50"
+          height="50"
+        />
+        <h3>Находите местные проекты и развивайте карьеру!</h3>
+        <p>Связывайтесь с местными клиентами и находите проекты в вашем регионе! Наша фриланс-биржа поможет вам легко находить заказы и развивать карьеру. Начните уже сегодня!
+        </p>
+      </div>
+      <div class="col-md-4">
+        <img
+          src="https://storage.googleapis.com/a1aa/image/k5VgaWuK7RZTE50BN9gz9uH5CtcWem2e06jJW5N4YQKNyc1TA.jpg"
+          alt="Иконка преимущества 3"
+          width="50"
+          height="50"
+        />
+        <h3>Дополнительный доход</h3>
+        <p>Возможность зарабатывать деньги параллельно с учебой, что может помочь покрыть расходы на обучение и жизнь.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="reviews" id="reviews">
+  <h1 class="mb-5">Что говорят о нас</h1>
+  {% if message %}
+    <h4 class="text-center">Комментариев пока нет...</h4>
+  {% else %}
+  {% for comment in comments %}
+  <div class="review">
+    <img
+      alt="Иконка отзыва"
+      height="50"
+      src="https://storage.googleapis.com/a1aa/image/4gXiXbfoGq0vYiU5WuWVi9QzRzInBHakYHRb9rHII4SEZu6JA.jpg"
+      width="50"
+    />
+    <p>
+      "{{ comment.comment }}"
+      <br />
+      - {{ comment.customer_name }}
+    </p>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+<div class="how-it-works" id="about">
+  <h1 class="mb-5">Как это работает</h1>
+  <div class="step">
+    <i class="fas fa-search"> </i>
+    <h3>Найдите работника</h3>
+    <p>Ищите профессионалов, подходящих для ваших нужд.</p>
+  </div>
+  <div class="step">
+    <i class="fas fa-tasks"> </i>
+    <h3>Отправьте задачу</h3>
+    <p>Укажите детали и требования к задаче.</p>
+  </div>
+  <div class="step">
+    <i class="fas fa-money-bill-wave"> </i>
+    <h3>Оплатите</h3>
+    <p>Безопасно отправляйте платежи за работу.</p>
+  </div>
+  <div class="step">
+    <i class="fas fa-box"> </i>
+    <h3>Получите продукт</h3>
+    <p>Получите ваш завершенный проект.</p>
+  </div>
+</div>
+<div class="cta-section">
+  <h1>Разместите свой первый заказ сейчас!</h1>
+  <p>Начните сегодня и найдите подходящего фрилансера для вашей задачи.</p>
+  <a href="#search"><button>Начать сейчас</button></a>
+</div>
+{% endblock %}

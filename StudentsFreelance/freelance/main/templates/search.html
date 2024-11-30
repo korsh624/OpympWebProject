@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block body %}
+<div class="container">
+  <div class="search-panel">
+    <form
+      action="{% url 'main:search' %}"
+      method="get"
+      style="display: flex; width: 100%"
+    >
+      <input
+        placeholder="Введите поисковый запрос, чтобы найти ордера"
+        type="text"
+        name="text"
+      />
+      <button type="submit" style="background-color: #17d171">Искать</button>
+    </form>
+  </div>
+  <div class="order-list">
+    {% if message %}
+
+    <h1 class="text-center">Заказов по запросу не найдено!</h1>
+
+    {% else %} {% for order in orders %}
+    <div class="order-item">
+      <img
+        alt="Product image"
+        height="50"
+        src="https://storage.googleapis.com/a1aa/image/Y1e039efLpbLTJQAXAYWSLN8Mrk3I5juYsCtzdU7rWsCX7qnA.jpg"
+        width="50"
+      />
+      <div>
+        <h3>{{ order.title }}</h3>
+        <p>Заказчик: {{ order.customer_name }}</p>
+        <p>Дата публикации: {{ order.publication_date }}</p>
+        <a href="{% url 'main:detail' order.id %}"><div class="btn" style="color: #17d171">Посмотреть детальнее</div></a>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+  </div>
+</div>
+{% endblock %}
